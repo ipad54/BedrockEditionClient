@@ -20,4 +20,4 @@ cd BedrockEditionClient
 
 
 ### Документация
-Документация: [DOCS.md](https://github.com/ipad54/BedrockEditionClient/blob/master/DOCS.md)
+Документация: [DOCS.md](https://github.com/ipad54/BedrockEditionClient/blob/master/docs/DOCS.md)
