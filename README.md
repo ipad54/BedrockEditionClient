@@ -15,7 +15,7 @@ Running Bedrock Edition Client requires PMMP's php8 binary
 ```
 git clone https://github.com/ipad54/BedrockEditionClient
 cd BedrockEditionClient
-/bin/php7/bin/php composer.phar install --no-dev --classmap-authoritative
+bin/php7/bin/php composer.phar install --no-dev --classmap-authoritative
 ```
 
 
