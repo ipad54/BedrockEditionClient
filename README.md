@@ -1,17 +1,17 @@
 # BedrockEditionClient
-Implementation of Minecraft: Bedrock Edition Client based on [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) with Encryption
+Реализация клиента Minecraft: Bedrock Edition на основе [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) с шифрованием
 
-Current Minecraft version: 1.19.0
+Текущая версия Minecraft, которую поддерживает клиент на данный момент: 1.19.0
 
-### TODO
-- [ ] Xbox Live Authentication
-- [ ] Realm joining 
-- [ ] Many more...
+### Планы
+- [ ] Xbox Live Аутентификация
+- [ ] Подключение к Realms
+- [ ] И много другого..
 
-### Getting started
-Running Bedrock Edition Client requires PMMP's php8 binary
+### Подготовка к работе
+Для запуска клиента "BedrockEditionClient" требуются бинарники PMMP php8
 
-### Installation
+### Установка
 ```
 git clone https://github.com/ipad54/BedrockEditionClient
 cd BedrockEditionClient
@@ -19,5 +19,5 @@ cd BedrockEditionClient
 ```
 
 
-### Documentation
- See [DOCS.md](https://github.com/ipad54/BedrockEditionClient/blob/master/DOCS.md)
+### Документация
+Документация: [DOCS.md](https://github.com/ipad54/BedrockEditionClient/blob/master/DOCS.md)
