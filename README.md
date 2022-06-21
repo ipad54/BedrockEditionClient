@@ -1,5 +1,6 @@
 # BedrockEditionClient
 Implementation of Minecraft: Bedrock Edition Client based on [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) with Encryption
+
 Current Minecraft version: 1.19.0
 
 ### TODO
