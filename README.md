@@ -53,4 +53,4 @@ cd BedrockEditionClient
 
 
 ### Documentation
- See [DOCS.md](https://github.com/ipad54/BedrockEditionClient/blob/master/DOCS_EN.md)
+ See [DOCS_EN.md](https://github.com/ipad54/BedrockEditionClient/blob/master/DOCS_EN.md)
