@@ -1,4 +1,4 @@
-### Creating a simple client that writes something to the chat after joining to the server
+### Создание простого клиента, который отправляет сообщения в чат после подключения к серверу
 
 ```php
 <?php
@@ -34,7 +34,7 @@ while(true){
 ![Screenshot_180](https://user-images.githubusercontent.com/63200545/174803523-0281e5c8-dc2b-414e-a524-b761754f7957.png)
 
 
-### Creating spam bots
+### Создание спам-ботов
 
 ```php
 <?php
