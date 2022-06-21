@@ -1,7 +1,5 @@
 # BedrockEditionClient
-<p align="center">
-	<b>Implementation of Minecraft: Bedrock Edition Client based on [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) with Encryption</b>
-</p>
+Implementation of Minecraft: Bedrock Edition Client based on [PocketMine-MP](https://github.com/pmmp/PocketMine-MP) with Encryption
 
 ### TODO
 - [ ] Xbox Live Authentication
