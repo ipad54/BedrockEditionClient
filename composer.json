@@ -1,4 +1,9 @@
 {
+	"name": "ipad54/bedrockeditionclient",
+        "description": "Implementation of Minecraft: Bedrock Edition client based on PocketMine-MP",
+        "type": "project",
+        "homepage": "https://github.com/ipad54/BedrockEditionClient",
+        "license": "GPL-3.0",
 	"require": {
 		"php": "^8.0",
 		"php-64bit": "*",
