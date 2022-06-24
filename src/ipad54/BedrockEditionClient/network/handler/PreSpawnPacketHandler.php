@@ -43,7 +43,7 @@ final class PreSpawnPacketHandler extends PacketHandler{
 
 			$this->networkSession->setHandler(null);
 
-			$this->networkSession->getClient()->getLogger()->debug("Player was spawned");
+			$this->networkSession->getClient()->getLogger()->debug("Игрок появился в мире");
 		}
 		return true;
 	}

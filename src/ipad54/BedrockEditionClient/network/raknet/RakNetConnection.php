@@ -62,7 +62,7 @@ class RakNetConnection{ //
 
 	public function __construct(NetworkSession $networkSession, \Logger $logger, int $mtuSize){
 		if($mtuSize < self::MIN_MTU_SIZE){
-			throw new \InvalidArgumentException("MTU size must be at least " . self::MIN_MTU_SIZE . ", got $mtuSize");
+			throw new \InvalidArgumentException("Размер MTU должен быть не менее " . self::MIN_MTU_SIZE . ", получено - $mtuSize");
 		}
 		$this->networkSession = $networkSession;
 
@@ -102,7 +102,7 @@ class RakNetConnection{ //
 		$pk->mtuSize = $this->mtuSize - 28;
 		$this->sendPacket($pk);
 
-		$this->logger->debug("Sending OpenConnectionRequest1");
+		$this->logger->debug("Отправка OpenConnectionRequest1");
 	}
 
 	public function getRakNetTimeMS() : int{
@@ -168,7 +168,7 @@ class RakNetConnection{ //
 			$pk->mtuSize = $this->mtuSize;
 			$this->sendPacket($pk);
 
-			$this->logger->debug("Sending OpenConnectionRequest2");
+			$this->logger->debug("Отправка OpenConnectionRequest2");
 		}elseif($pk instanceof OpenConnectionReply2){
 			$pk = new ConnectionRequest();
 			$pk->clientID = $this->networkSession->getClient()->getId();
@@ -177,7 +177,7 @@ class RakNetConnection{ //
 
 			$this->offline = false;
 
-			$this->logger->debug("Sending ConnectionRequest");
+			$this->logger->debug("Отправка ConnectionRequest");
 		}
 	}
 
@@ -217,7 +217,7 @@ class RakNetConnection{ //
 
 	private function handleEncapsulatedPacketRoute(EncapsulatedPacket $packet) : void{
 		$id = ord($packet->buffer[0]);
-		if($id < MessageIdentifiers::ID_USER_PACKET_ENUM){ //internal data packet
+		if($id < MessageIdentifiers::ID_USER_PACKET_ENUM){ //внутренний пакет данных
 			if($this->state === self::STATE_CONNECTING){
 				if($id === ConnectionRequestAccepted::$ID){
 					$pk = new NewIncomingConnection();
@@ -234,7 +234,7 @@ class RakNetConnection{ //
 
 					$this->state = self::STATE_CONNECTED;
 
-					$this->logger->debug("Connection accepted");
+					$this->logger->debug("Соединение прошло успешно");
 				}
 			}elseif($id === ConnectedPong::$ID){
 				$pk = new ConnectedPong();

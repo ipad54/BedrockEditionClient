@@ -105,5 +105,3 @@ function sendSpam(Client $client) : void{
 ```
 
 ![Screenshot_181](https://user-images.githubusercontent.com/63200545/174803741-96e8c519-397d-46d8-8b28-8b49d4f74bb8.png)
-
-

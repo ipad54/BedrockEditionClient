@@ -21,7 +21,7 @@ class ClientPacketSender implements PacketSender{
 		$this->connection->sendEncapsulated($pk, $immediate);
 	}
 
-	public function close(string $reason = "unknown reason") : void{
-		// TODO: Implement close() method.
+	public function close(string $reason = "неизвестная причина") : void{
+		// TODO: Реализовать метод close()
 	}
 }

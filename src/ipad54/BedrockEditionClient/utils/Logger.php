@@ -26,20 +26,20 @@ class Logger implements \Logger{
 	}
 
 	/**
-	 * Returns the current logger format used for console output.
+	 * Возвращает текущий формат логгера, используемый для вывода на консоль.
 	 */
 	public function getFormat() : string{
 		return $this->format;
 	}
 
 	/**
-	 * Sets the logger format to use for outputting text to the console.
-	 * It should be an sprintf()able string accepting 5 string arguments:
-	 * - time
-	 * - color
-	 * - thread name
-	 * - prefix (debug, info etc)
-	 * - message
+	 * Задает формат логгера, который будет использоваться для вывода текста в консоль.
+	 * Это должна быть строка с поддержкой sprintf(), принимающая 5 строковых аргументов:
+	 * - время
+	 * - цвет
+	 * - имя потока
+	 * - префикс (debug, info и т.д.)
+	 * - сообщение
 	 *
 	 * @see http://php.net/manual/en/function.sprintf.php
 	 */
@@ -138,7 +138,7 @@ class Logger implements \Logger{
 		$message = sprintf($this->format, $time->format("H:i:s.v"), $color, $prefix, TextFormat::clean($message, false));
 
 		if(!Terminal::isInit()){
-			Terminal::init($this->useFormattingCodes); //lazy-init colour codes because we don't know if they've been registered on this thread
+			Terminal::init($this->useFormattingCodes); //цветовые коды lazy-init, потому что мы не знаем, были ли они зарегистрированы в этом потоке
 		}
 		Terminal::writeLine($message);
 

@@ -119,22 +119,22 @@ class NetworkSession{
 
 		if($this->handler !== null){
 			$this->handler->setUp();
-			$this->logger->debug("A new packet handler has been set (".get_class($handler).")");
+			$this->logger->debug("Был установлен новый обработчик пакетов (".get_class($handler).")");
 		}
 	}
 
 	public function createPlayer(StartGamePacket $packet) : void{
 		if($this->player !== null){
-			throw new \LogicException("Player is already created!");
+			throw new \LogicException("Игрок уже создан!");
 		}
 		$this->player = new Player($this, $this->loginInfo, $packet, $this->client->getId());
 
-		$this->logger->debug("Player was created, eid: ".$this->client->getId());
+		$this->logger->debug("Игрок был создан, айди: ".$this->client->getId());
 	}
 
 	public function startEncryption(string $handshakeJwt) : void{
 		if($this->cipher !== null){
-			throw new \LogicException("Encryption is already started!");
+			throw new \LogicException("Шифрование уже запущено!");
 		}
 
 		[$header, $body] = JwtUtils::parse($handshakeJwt);
@@ -148,7 +148,7 @@ class NetworkSession{
 
 		$this->cipher = EncryptionContext::fakeGCM($encryptionKey);
 
-		$this->logger->debug("Encryption was started, key: ".bin2hex($encryptionKey));
+		$this->logger->debug("Было запущено шифрование, ключ: ".bin2hex($encryptionKey));
 	}
 
 	public function handleEncoded(string $payload) : void{
@@ -166,7 +166,7 @@ class NetworkSession{
 
 	public function handleDataPacket(Packet $packet, string $buffer) : void{
 		if(!($packet instanceof ClientboundPacket)){
-			throw new PacketHandlingException("Unexpected non-clientbound packet");
+			throw new PacketHandlingException("Неожиданный пакет, не связанный с клиентом");
 		}
 
 		$packet->decode(PacketSerializer::decoder($buffer, 0, $this->serializerContext));
@@ -199,7 +199,7 @@ class NetworkSession{
 
 	public function processLogin() : void{
 		if($this->loggedIn){
-			throw new \LogicException("Client already loggedIn!");
+			throw new \LogicException("Клиент уже вошел в систему!");
 		}
 
 		[$chainDataJwt, $clientDataJwt] = $this->buildLoginData();
@@ -208,7 +208,7 @@ class NetworkSession{
 
 		$this->loggedIn = true;
 
-		$this->logger->debug("LoginPacket was sent, nickname: ".$this->loginInfo->getUsername());
+		$this->logger->debug("LoginPacket был отправлен, ник: ".$this->loginInfo->getUsername());
 	}
 
 	protected function buildLoginData() : array{
@@ -228,7 +228,7 @@ class NetworkSession{
 		$chainDataJwt->chain = [JwtUtils::create($header, [
 			"exp" => time() + 3600,
 			"extraData" => [
-				"XUID" => "", //TODO: Xbox auth
+				"XUID" => "", //TODO: Xbox авторизация
 				"displayName" => $this->loginInfo->getUsername(),
 				"identity" => $this->loginInfo->getUuid()->toString(),
 			],
@@ -239,43 +239,43 @@ class NetworkSession{
 		$skin = $this->loginInfo->getSkin();
 
 		$clientDataJwt = JwtUtils::create($header, [
-			"AnimatedImageData" => [], //TODO: Hardcoded value
-			"ArmSize" => "wide", //TODO: Hardcoded value
-			"CapeData" => "", //TODO: Hardcoded value
-			"CapeId" => "", //TODO: Hardcoded value
-			"CapeImageHeight" => 0, //TODO: Hardcoded value
-			"CapeImageWidth" => 0, //TODO: Hardcoded value
-			"CapeOnClassicSkin" => false, //TODO: Hardcoded value
+			"AnimatedImageData" => [], //TODO: Жестко закодировнное значение
+			"ArmSize" => "wide", //TODO: Жестко закодировнное значение
+			"CapeData" => "", //TODO: Жестко закодировнное значение
+			"CapeId" => "", //TODO: Жестко закодировнное значение
+			"CapeImageHeight" => 0, //TODO: Жестко закодировнное значение
+			"CapeImageWidth" => 0, //TODO: Жестко закодировнное значение
+			"CapeOnClassicSkin" => false, //TODO: Жестко закодировнное значение
 			"ClientRandomId" => $this->client->getId(),
-			"CurrentInputMode" => 2, //TODO: Hardcoded value
-			"DefaultInputMode" => 1, //TODO: Hardcoded value
+			"CurrentInputMode" => 2, //TODO: Жестко закодировнное значение
+			"DefaultInputMode" => 1, //TODO: Жестко закодировнное значение
 			"DeviceId" => $this->loginInfo->getDeviceId(),
 			"DeviceModel" => $this->loginInfo->getDeviceModel(),
 			"DeviceOS" => $this->loginInfo->getDeviceOS(),
 			"GameVersion" => ProtocolInfo::MINECRAFT_VERSION_NETWORK,
-			"GuiScale" => 0, //TODO: Hardcoded value
+			"GuiScale" => 0, //TODO: Жестко закодировнное значение
 			"LanguageCode" => $this->loginInfo->getLocale(),
-			"PersonaPieces" => [], //TODO: Hardcoded value
-			"PersonaSkin" => false, //TODO: Hardcoded value
-			"PieceTintColors" => [], //TODO: Hardcoded value
-			"PlatformOfflineId" => "", //TODO: Hardcoded value
-			"PlatformOnlineId" => "", //TODO: Hardcoded value
-			"PlayFabId" => "f79a424e50f4736", //TODO: Hardcoded value
-			"PremiumSkin" => false, //TODO: Hardcoded value
+			"PersonaPieces" => [], //TODO: Жестко закодировнное значение
+			"PersonaSkin" => false, //TODO: Жестко закодировнное значение
+			"PieceTintColors" => [], //TODO: Жестко закодировнное значение
+			"PlatformOfflineId" => "", //TODO: Жестко закодировнное значение
+			"PlatformOnlineId" => "", //TODO: Жестко закодировнное значение
+			"PlayFabId" => "f79a424e50f4736", //TODO: Жестко закодировнное значение
+			"PremiumSkin" => false, //TODO: Жестко закодировнное значение
 			"SelfSignedId" => base64_encode(random_bytes(16)),
 			"ServerAddress" => $this->serverAddress->getIp() . ":" . $this->serverAddress->getPort(),
-			"SkinAnimationData" => "", //TODO: Hardcoded value
-			"SkinColor" => "#b37b62", //TODO: Hardcoded value
+			"SkinAnimationData" => "", //TODO: Жестко закодировнное значение
+			"SkinColor" => "#b37b62", //TODO: Жестко закодировнное значение
 			"SkinData" => base64_encode($skin->getSkinData()),
-			"SkinGeometryData" => "", //TODO: Hardcoded value
-			"SkinGeometryDataEngineVersion" => "MS4xNC4w", //TODO: Hardcoded value
+			"SkinGeometryData" => "", //TODO: Жестко закодировнное значение
+			"SkinGeometryDataEngineVersion" => "MS4xNC4w", //TODO: Жестко закодировнное значение
 			"SkinId" => $skin->getSkinId(),
-			"SkinImageHeight" => 64, //TODO: Hardcoded value
-			"SkinImageWidth" => 64, //TODO: Hardcoded value
+			"SkinImageHeight" => 64, //TODO: Жестко закодировнное значение
+			"SkinImageWidth" => 64, //TODO: Жестко закодировнное значение
 			"SkinResourcePatch" => base64_encode(json_encode(["geometry" => ["default" => "geometry.humanoid.custom"]])),
-			"ThirdPartyName" => "", //TODO: Hardcoded value
-			"ThirdPartyNameOnly" => false, //TODO: Hardcoded value
-			"UIProfile" => 1 //TODO: Hardcoded value
+			"ThirdPartyName" => "", //TODO: Жестко закодировнное значение
+			"ThirdPartyNameOnly" => false, //TODO: Жестко закодировнное значение
+			"UIProfile" => 1 //TODO: Жестко закодировнное значение
 		], $localPriv);
 
 		return [$chainDataJwt, $clientDataJwt];

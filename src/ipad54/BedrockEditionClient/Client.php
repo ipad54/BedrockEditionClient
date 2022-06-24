@@ -68,7 +68,7 @@ class Client{
 
 	public function connect() : void{
 		if($this->isConnected()){
-			throw new \LogicException("Client is already connected!");
+			throw new \LogicException("Клиент уже подключился!");
 		}
 
 		$this->networkSession = new NetworkSession($this->serverAddress, $this->loginInfo, $this);
